@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "358185869808",
+    "project_id": "cinemaapp-feb38",
+    "storage_bucket": "cinemaapp-feb38.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:358185869808:android:68c713d74becd5d7a5fd35",
+        "android_client_info": {
+          "package_name": "kirishhaa.viewwave"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "358185869808-ebv1oqcmpsm0jj1nio6vkalfjpfedi6c.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBKkAYJbsw9X_QK8WOS605UIg7YVgLBZSw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "358185869808-ebv1oqcmpsm0jj1nio6vkalfjpfedi6c.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
