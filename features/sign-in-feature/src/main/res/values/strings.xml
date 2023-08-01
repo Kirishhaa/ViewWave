@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <string name="incorrect_email">Incorrect email</string>
-    <string name="incorrect_password">Password must have 6–20 symbols</string>
-    <string name="incorrect_data">Auth error</string>
-    <string name="invalid_user">Invalid user</string>
-</resources>

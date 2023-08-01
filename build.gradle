@@ -31,7 +31,8 @@ buildscript {
                 Features: [
                         SignIn: ":features:sign-in-feature",
                         SignUp: ":features:sign-up-feature"
-                ]
+                ],
+                Navigation: ":navigation"
         ]
 
     }

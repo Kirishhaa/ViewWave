@@ -16,6 +16,7 @@
             <option value="$PROJECT_DIR$/features" />
             <option value="$PROJECT_DIR$/features/sign-in-feature" />
             <option value="$PROJECT_DIR$/features/sign-up-feature" />
+            <option value="$PROJECT_DIR$/navigation" />
             <option value="$PROJECT_DIR$/themes" />
           </set>
         </option>

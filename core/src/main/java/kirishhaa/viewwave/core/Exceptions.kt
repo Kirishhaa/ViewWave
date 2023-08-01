@@ -1,7 +1,7 @@
 package kirishhaa.viewwave.core
 
-class IncorrectUsernameException(message: String?=null): Exception(message)
+class IncorrectEmailException(message: String?=null): Exception(message)
 
 class IncorrectPasswordException(message: String?=null): Exception(message)
 
-class AuthException(message: String?=null): Exception(message)
+class PasswordsMatchException(message: String?=null) : Exception(message)

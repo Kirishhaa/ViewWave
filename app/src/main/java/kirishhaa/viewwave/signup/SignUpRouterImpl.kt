@@ -1,10 +1,13 @@
 package kirishhaa.viewwave.signup
 
-import com.example.sign_up_feature.presentation.SignUpRouter
+import kirishhaa.viewwave.navigation.domain.GlobalNavigator
+import kirishhaa.viewwave.sign_up_feature.presentation.SignUpRouter
+import javax.inject.Inject
 
-class SignUpRouterImpl: SignUpRouter {
+class SignUpRouterImpl @Inject constructor(
+    private val navigator: GlobalNavigator,
+) : SignUpRouter {
 
-    override fun goBack() {
+    override fun goBack() = navigator.goBack()
 
-    }
 }
