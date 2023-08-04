@@ -15,7 +15,7 @@ class MainActivity : AppCompatActivity() {
 
     @Inject lateinit var navigationProvider: NavigationProvider
 
-    @Inject lateinit var executor: ActivityLifecycleExecutor
+    @Inject internal lateinit var executor: ActivityLifecycleExecutor
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

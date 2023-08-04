@@ -7,10 +7,7 @@ import androidx.fragment.app.viewModels
 import com.example.sign_up_feature.R
 import com.example.sign_up_feature.databinding.FragmentSignUpBinding
 import dagger.hilt.android.AndroidEntryPoint
-import kirishhaa.viewwave.core.AbstractRegistrationFragment
-import kirishhaa.viewwave.core.IncorrectEmailException
-import kirishhaa.viewwave.core.IncorrectPasswordException
-import kirishhaa.viewwave.core.PasswordsMatchException
+import kirishhaa.viewwave.core.*
 import kirishhaa.viewwave.core.R.string.*
 
 @AndroidEntryPoint

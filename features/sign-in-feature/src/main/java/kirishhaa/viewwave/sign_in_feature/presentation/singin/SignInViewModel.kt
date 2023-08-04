@@ -1,50 +1,46 @@
 package kirishhaa.viewwave.sign_in_feature.presentation.singin
 
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
-import com.google.firebase.auth.FirebaseAuthInvalidUserException
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kirishhaa.viewwave.core.*
+import kirishhaa.viewwave.core.EmptyFinish
+import kirishhaa.viewwave.core.Finish
+import kirishhaa.viewwave.core.handleSingleFinishEvent
+import kirishhaa.viewwave.sign_in_feature.data.SignInInfo
 import kirishhaa.viewwave.sign_in_feature.domain.usecases.IsSignedInUseCase
 import kirishhaa.viewwave.sign_in_feature.domain.usecases.SignInUseCase
 import kirishhaa.viewwave.sign_in_feature.presentation.SignInRouter
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class SignInViewModel @Inject constructor(
     private val isSignedIn: IsSignedInUseCase,
     private val signIn: SignInUseCase,
-    private val router: SignInRouter): ViewModel() {
+    private val router: SignInRouter,
+) : ViewModel() {
 
-    private val _state: MutableStateFlow<Result<Any>> = MutableStateFlow(EmptyResult())
-    val state: Flow<Result<Any>> = _state
+    private val _state: MutableStateFlow<Finish<Unit>> = MutableStateFlow(EmptyFinish())
+    val state: Flow<Finish<Unit>> = _state
 
     init {
-        viewModelScope.launch {
-            _state.value = PendingResult()
-            if(isSignedIn.isSignedIn()) router.toMain()
-            _state.value = EmptyResult()
+        handleSingleFinishEvent(_state) {
+            delay(2000)
+            if (isSignedIn.isSignedIn()) router.toMain()
         }
     }
 
     fun onSignInClicked(email: String, password: String) {
-        viewModelScope.launch {
-            _state.value = PendingResult()
-            try {
-                signIn.signIn(email, password)
-                router.toMain()
-                _state.value = EmptyResult()
-            } catch (e: Exception) {
-                _state.value = ErrorResult(e)
-            }
+        handleSingleFinishEvent(_state) {
+            val signInInfo = SignInInfo(email, password)
+            signIn.signIn(signInInfo)
+            router.toMain()
         }
     }
 
     fun onForgetPasswordUsernameClicked() = router.toAccountRecovery()
 
-    fun onHaventAccountClicked() = router.toSingUp()
+    fun onHaventAccountClicked() = router.toSignUp()
 
 }

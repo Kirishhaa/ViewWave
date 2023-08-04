@@ -45,11 +45,13 @@ dependencies {
 
 
     implementation Libs.Google.Hilt
-    implementation 'com.google.firebase:firebase-auth-ktx:22.1.0'
     kapt Libs.Google.HiltCompiler
 
     implementation project(Modules.Features.SignIn)
     implementation project(Modules.Features.SignUp)
     implementation project(Modules.Core)
     implementation project(Modules.Navigation)
+    implementation project(Modules.Data)
+    implementation project(Modules.Cinema.MainScreen)
+    implementation project(Modules.Cinema.MainScreen)
 }

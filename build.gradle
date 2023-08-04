@@ -1,6 +1,8 @@
 buildscript {
     ext {
         hilt_version = "2.44"
+        http_version = "4.11.0"
+        retrofit_version = "2.9.0"
 
         Libs = [
                 Android: [
@@ -16,23 +18,35 @@ buildscript {
                 Google: [
                         Material: 'com.google.android.material:material:1.9.0',
                         Hilt: "com.google.dagger:hilt-android:$hilt_version",
-                        HiltCompiler: "com.google.dagger:hilt-android-compiler:$hilt_version"
+                        HiltCompiler: "com.google.dagger:hilt-android-compiler:$hilt_version",
+                        FirebaseAuth: "com.google.firebase:firebase-auth-ktx:22.1.0",
+                        Gson: "com.google.code.gson:gson:2.10.1"
                 ],
                 JetBrains: [
                         CoroutinesCore: 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.1'
                 ],
                 Testing: [
                         JUnit: "junit:junit:4.13.2"
+                ],
+                SquareUp: [
+                        OKHTTPCore: "com.squareup.okhttp3:okhttp:$http_version",
+                        OKHTTPLogging: "com.squareup.okhttp3:logging-interceptor:$http_version",
+                        RetrofitCore: "com.squareup.retrofit2:retrofit:$retrofit_version",
+                        RetrofitGsonConverter: "com.squareup.retrofit2:converter-gson:$retrofit_version"
                 ]
         ]
 
         Modules = [
                 Core: ":core",
+                Navigation: ":navigation",
+                Data: ":data",
                 Features: [
                         SignIn: ":features:sign-in-feature",
                         SignUp: ":features:sign-up-feature"
                 ],
-                Navigation: ":navigation"
+                Cinema: [
+                        MainScreen: ":cinema:main-screen"
+                ]
         ]
 
     }

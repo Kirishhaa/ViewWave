@@ -4,11 +4,10 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.fragment.app.viewModels
-import com.google.firebase.auth.FirebaseAuthInvalidUserException
 import dagger.hilt.android.AndroidEntryPoint
 import kirishhaa.viewwave.core.AbstractRegistrationFragment
-import kirishhaa.viewwave.core.IncorrectPasswordException
 import kirishhaa.viewwave.core.IncorrectEmailException
+import kirishhaa.viewwave.core.IncorrectPasswordException
 import kirishhaa.viewwave.core.R.string.*
 import kirishhaa.viewwave.sign_in_feature.R
 import kirishhaa.viewwave.sign_in_feature.databinding.FragmentSingInBinding
@@ -46,13 +45,6 @@ class SignInFragment : AbstractRegistrationFragment(R.layout.fragment_sing_in) {
                 is IncorrectPasswordException -> {
                     binding.etPassword.error =
                         resources.getString(incorrect_password)
-                }
-                is FirebaseAuthInvalidUserException -> {
-                    Toast.makeText(
-                        context,
-                        resources.getString(invalid_user),
-                        Toast.LENGTH_SHORT
-                    ).show()
                 }
                 else -> {
                     Toast.makeText(

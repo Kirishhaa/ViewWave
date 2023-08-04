@@ -8,7 +8,7 @@ import kirishhaa.viewwave.navigation.presentation.ActivityLifecycleExecutor
 
 @Module
 @InstallIn(SingletonComponent::class)
-class ExecutorModule {
+internal class ExecutorModule {
 
     @Provides
     fun provideExecutor() = ActivityLifecycleExecutor

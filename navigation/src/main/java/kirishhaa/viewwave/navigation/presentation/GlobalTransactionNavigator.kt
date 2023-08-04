@@ -8,7 +8,7 @@ import kirishhaa.viewwave.navigation.R
 import kirishhaa.viewwave.navigation.domain.GlobalNavigator
 import javax.inject.Inject
 
-class GlobalTransactionNavigator @Inject constructor(
+internal class GlobalTransactionNavigator @Inject constructor(
     private val activityLifecycleExecutor: ActivityLifecycleExecutor,
 ) : GlobalNavigator {
 

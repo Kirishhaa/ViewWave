@@ -47,7 +47,6 @@ dependencies {
 
     implementation Libs.Google.Material
     implementation Libs.Google.Hilt
-    implementation 'com.google.firebase:firebase-auth-ktx:22.1.0'
     kapt Libs.Google.HiltCompiler
 
     implementation project(':core')

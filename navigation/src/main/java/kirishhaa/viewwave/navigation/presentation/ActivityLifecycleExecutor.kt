@@ -2,7 +2,10 @@ package kirishhaa.viewwave.navigation.presentation
 
 import androidx.fragment.app.FragmentActivity
 
-object ActivityLifecycleExecutor {
+/**
+ * Class-observer that can safety invoke navigation functions on the Activity
+ */
+internal object ActivityLifecycleExecutor {
 
     private var activity: FragmentActivity? = null
 
