@@ -5,7 +5,6 @@ import kirishhaa.viewwave.data.movie.datasource.MovieDataSource
 import javax.inject.Inject
 import javax.inject.Singleton
 
-@Singleton
 class DefaultMovieRepository @Inject constructor(
     private val movieDataSource: MovieDataSource,
 ) : MovieRepository {
@@ -14,10 +13,15 @@ class DefaultMovieRepository @Inject constructor(
         includeAdult: Boolean?,
         includeVideo: Boolean?,
         language: String?,
-        page: Int,
+        page: Int?,
         sortBy: String?,
     ): MovieListDataEntity {
-        return movieDataSource.discoverMovie(includeAdult, includeVideo, language, page, sortBy)
+        return movieDataSource
+            .discoverMovie(includeAdult, includeVideo, language, page, sortBy)
+    }
+
+    override suspend fun getDetailMovie(id: Int) {
+        //TODO
     }
 
 

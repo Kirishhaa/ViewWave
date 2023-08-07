@@ -5,7 +5,7 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import kirishhaa.viewwave.core.URLProvider.BASE_URL_QUERY
+import kirishhaa.viewwave.core.URLProvider.QUERY.BASE_URL_QUERY
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit

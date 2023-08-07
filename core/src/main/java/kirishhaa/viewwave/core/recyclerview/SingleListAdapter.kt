@@ -1,6 +1,7 @@
 package kirishhaa.viewwave.core.recyclerview
 
 import android.annotation.SuppressLint
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 
 /**
@@ -15,16 +16,11 @@ abstract class SingleListAdapter<ITEMTYPE, VH: SingleListViewHolder<ITEMTYPE>>: 
     override fun getItemCount(): Int = items.size
 
     @Suppress("INAPPLICABLE_JVM_NAME")
-    @SuppressLint("NotifyDataSetChanged")
     @JvmName("SingleListAdapterSetItems")
-    fun setItems( items: List<ITEMTYPE>) {
-        this.items = items
-        notifyDataSetChanged()
-    }
+    abstract fun setItems( items: List<ITEMTYPE>)
 
     override fun onBindViewHolder(holder: VH, position: Int) {
         val item = items[position]
         holder.bindItem(item)
     }
-
 }

@@ -1,10 +1,6 @@
 package kirishhaa.viewwave.sign_up_feature.domain
 
-import kirishhaa.viewwave.core.IncorrectEmailException
-import kirishhaa.viewwave.core.IncorrectPasswordException
-import kirishhaa.viewwave.core.PasswordsMatchException
-import kirishhaa.viewwave.core.AuthException
-import kirishhaa.viewwave.core.UnsuccessfulCreateUserException
+import kirishhaa.viewwave.core.*
 import kirishhaa.viewwave.sign_up_feature.data.SignUpInfo
 
 interface CreateAccountUseCase {

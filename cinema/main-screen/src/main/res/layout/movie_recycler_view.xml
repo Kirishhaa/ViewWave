@@ -9,7 +9,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:text="Popular"
+        android:text="Popular"
         android:textSize="32sp"/>
 
     <androidx.recyclerview.widget.RecyclerView
@@ -19,5 +19,6 @@
         tools:listitem="@layout/movie_recycle_item"
         android:orientation="horizontal"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
+
 
 </LinearLayout>

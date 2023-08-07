@@ -53,5 +53,5 @@ dependencies {
     implementation project(Modules.Navigation)
     implementation project(Modules.Data)
     implementation project(Modules.Cinema.MainScreen)
-    implementation project(Modules.Cinema.MainScreen)
+    implementation project(Modules.Cinema.MovieDetailsScreen)
 }

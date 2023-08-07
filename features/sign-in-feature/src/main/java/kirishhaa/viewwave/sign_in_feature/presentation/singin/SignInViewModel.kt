@@ -1,10 +1,9 @@
 package kirishhaa.viewwave.sign_in_feature.presentation.singin
 
-import androidx.lifecycle.ViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kirishhaa.viewwave.core.EmptyFinish
+import kirishhaa.viewwave.core.BaseViewModel
 import kirishhaa.viewwave.core.Finish
-import kirishhaa.viewwave.core.handleSingleFinishEvent
+import kirishhaa.viewwave.core.PendingFinish
 import kirishhaa.viewwave.sign_in_feature.data.SignInInfo
 import kirishhaa.viewwave.sign_in_feature.domain.usecases.IsSignedInUseCase
 import kirishhaa.viewwave.sign_in_feature.domain.usecases.SignInUseCase
@@ -19,20 +18,20 @@ class SignInViewModel @Inject constructor(
     private val isSignedIn: IsSignedInUseCase,
     private val signIn: SignInUseCase,
     private val router: SignInRouter,
-) : ViewModel() {
+) : BaseViewModel() {
 
-    private val _state: MutableStateFlow<Finish<Unit>> = MutableStateFlow(EmptyFinish())
+    private val _state: MutableStateFlow<Finish<Unit>> = MutableStateFlow(PendingFinish())
     val state: Flow<Finish<Unit>> = _state
 
     init {
-        handleSingleFinishEvent(_state) {
-            delay(2000)
+        handleFinishFlow(_state) {
+            delay(1000)
             if (isSignedIn.isSignedIn()) router.toMain()
         }
     }
 
     fun onSignInClicked(email: String, password: String) {
-        handleSingleFinishEvent(_state) {
+        handleFinishFlow(_state) {
             val signInInfo = SignInInfo(email, password)
             signIn.signIn(signInInfo)
             router.toMain()

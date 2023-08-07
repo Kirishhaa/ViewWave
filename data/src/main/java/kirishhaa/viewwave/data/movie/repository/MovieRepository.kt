@@ -12,8 +12,10 @@ interface MovieRepository {
         includeAdult: Boolean?,
         includeVideo: Boolean?,
         language: String?,
-        page: Int,
+        page: Int?,
         sortBy: String?
     ): MovieListDataEntity
+
+    suspend fun getDetailMovie(id: Int)
 
 }

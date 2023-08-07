@@ -12,7 +12,7 @@ interface MovieDataSource {
         includeAdult: Boolean?,
         includeVideo: Boolean?,
         language: String?,
-        page: Int,
+        page: Int?,
         sortBy: String?
     ): MovieListDataEntity
 

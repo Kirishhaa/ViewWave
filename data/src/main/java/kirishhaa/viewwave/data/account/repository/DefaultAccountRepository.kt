@@ -2,10 +2,10 @@ package kirishhaa.viewwave.data.account.repository
 
 import kirishhaa.viewwave.core.*
 import kirishhaa.viewwave.data.account.datasource.AccountDataSource
+import kotlinx.coroutines.delay
 import javax.inject.Inject
 import javax.inject.Singleton
 
-@Singleton
 class DefaultAccountRepository @Inject constructor(
     private val accountDataSource: AccountDataSource
 ): AccountRepository {
@@ -23,7 +23,9 @@ class DefaultAccountRepository @Inject constructor(
         }
     }
 
-    override suspend fun isSignedIn(): Boolean = accountDataSource.isSignedIn()
+    override suspend fun isSignedIn(): Boolean {
+        return accountDataSource.isSignedIn()
+    }
 
     override suspend fun createUserWithEmailAndPassword(email: String, password: String) {
         try {

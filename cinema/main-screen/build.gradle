@@ -49,6 +49,8 @@ dependencies {
 
     implementation Libs.JetBrains.CoroutinesCore
 
+    implementation Libs.GitHub.Glide
+
     implementation project(Modules.Core)
 
 }

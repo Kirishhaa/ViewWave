@@ -1,4 +1,4 @@
-buildscript {
+    buildscript {
     ext {
         hilt_version = "2.44"
         http_version = "4.11.0"
@@ -33,6 +33,9 @@ buildscript {
                         OKHTTPLogging: "com.squareup.okhttp3:logging-interceptor:$http_version",
                         RetrofitCore: "com.squareup.retrofit2:retrofit:$retrofit_version",
                         RetrofitGsonConverter: "com.squareup.retrofit2:converter-gson:$retrofit_version"
+                ],
+                GitHub: [
+                        Glide: 'com.github.bumptech.glide:glide:4.15.1'
                 ]
         ]
 
@@ -45,7 +48,8 @@ buildscript {
                         SignUp: ":features:sign-up-feature"
                 ],
                 Cinema: [
-                        MainScreen: ":cinema:main-screen"
+                        MainScreen: ":cinema:main-screen",
+                        MovieDetailsScreen: ":cinema:movie-details-screen"
                 ]
         ]
 

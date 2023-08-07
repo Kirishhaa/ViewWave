@@ -4,6 +4,6 @@ class MovieSearchQuery(
     val includeAdult: Boolean?,
     val includeVideo: Boolean?,
     val language: String?,
-    val page: Int,
+    val page: Int?,
     val sortBy: String?
 )

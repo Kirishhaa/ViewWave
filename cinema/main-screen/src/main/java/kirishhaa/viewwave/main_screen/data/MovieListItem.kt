@@ -1,10 +1,9 @@
 package kirishhaa.viewwave.main_screen.data
 
-import android.graphics.drawable.Drawable
-
+data
 class MovieListItem(
     val id: Int,
-    val image: Drawable,
+    val imagePath: String,
     val title: String,
-    val rate: Double
+    val rate: String
 )
