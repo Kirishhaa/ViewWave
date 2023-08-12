@@ -38,6 +38,7 @@ dependencies {
     implementation Libs.Android.AppCompat
     implementation Libs.Android.ConstraintLayout
     implementation Libs.Android.LifecycleViewModelKtx
+    implementation Libs.Android.FragmentKtx
 
     implementation Libs.Google.Material
 

@@ -34,7 +34,7 @@ private class SimpleAsyncWork<T> : AsyncWork<T> {
     private var successCallback: ((T) -> Unit)? = null
     private var errorCallback: ((Throwable) -> Unit)? = null
 
-    override fun onSuccess(block: (T) -> Unit): AsyncWork<T> {
+    override fun onSuccess(block:(T) -> Unit): AsyncWork<T> {
         this.successCallback = block
         return this
     }
@@ -54,8 +54,7 @@ private class SimpleAsyncWork<T> : AsyncWork<T> {
         result.value = PendingFinish()
     }
 
-    override fun enqueue(scope: CoroutineScope, block: suspend () -> T): AsyncWork<T> =
-        synchronized(this) {
+    override fun enqueue(scope: CoroutineScope, block: suspend () -> T): AsyncWork<T> {
             val job = this.job
             if (updatable || job == null) {
                 job?.cancel()
@@ -64,7 +63,7 @@ private class SimpleAsyncWork<T> : AsyncWork<T> {
             return this
         }
 
-    private fun runAsync(scope: CoroutineScope, block: suspend () -> T) = synchronized(this) {
+    private fun runAsync(scope: CoroutineScope, block: suspend () -> T) {
         this.result.value = PendingFinish()
         job = scope.launch {
             var asyncResult: Finish<T>
@@ -78,9 +77,10 @@ private class SimpleAsyncWork<T> : AsyncWork<T> {
                 notifyUpdates(asyncResult)
             }
         }
+        job?.invokeOnCompletion { job=null }
     }
 
-    private fun notifyUpdates(asyncResult: Finish<T>) = synchronized(this) {
+    private fun notifyUpdates(asyncResult: Finish<T>)  {
         val successCallback = this.successCallback
         val errorCallback = this.errorCallback
 
@@ -94,8 +94,6 @@ private class SimpleAsyncWork<T> : AsyncWork<T> {
 
         this.successCallback = null
         this.errorCallback = null
-
-        this.job = null
     }
 }
 

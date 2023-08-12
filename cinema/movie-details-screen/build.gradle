@@ -1,6 +1,8 @@
 plugins {
     id 'com.android.library'
     id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
+    id 'com.google.dagger.hilt.android'
 }
 
 android {
@@ -28,6 +30,9 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+    viewBinding {
+        enabled = true
+    }
 }
 
 dependencies {
@@ -37,6 +42,14 @@ dependencies {
     implementation Libs.Android.ConstraintLayout
     implementation Libs.Android.RecyclerView
     implementation Libs.Android.FragmentKtx
+
+    implementation Libs.Google.Material
+    implementation Libs.Google.Hilt
+    kapt Libs.Google.HiltCompiler
+
+    implementation Libs.JetBrains.CoroutinesCore
+
+    implementation Libs.GitHub.Glide
 
     implementation project(Modules.Core)
 }

@@ -7,8 +7,8 @@ class MovieDataEntity(
     val adult: Boolean,
     @SerializedName("backdrop_path")
     val backdropPath: String,
-    @SerializedName("genre_ids")
-    val genreIds: IntArray,
+    @SerializedName("genres")
+    val genres: List<GenreDataEntity>?,
     @SerializedName("id")
     val id: Int,
     @SerializedName("original_language")
@@ -26,5 +26,7 @@ class MovieDataEntity(
     @SerializedName("vote_average")
     val voteAverage: Double,
     @SerializedName("vote_count")
-    val voteCount: Int
+    val voteCount: Int,
+    @SerializedName("runtime")
+    val runtime: Int?
 )

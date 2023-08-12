@@ -15,13 +15,14 @@ import kirishhaa.viewwave.sign_in_feature.databinding.FragmentSingInBinding
 @AndroidEntryPoint
 class SignInFragment : AbstractRegistrationFragment(R.layout.fragment_sing_in) {
 
-    private lateinit var binding: FragmentSingInBinding
+    private var _binding: FragmentSingInBinding? = null
+    private val binding: FragmentSingInBinding = _binding!!
 
     private val viewModel by viewModels<SignInViewModel>()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding = FragmentSingInBinding.bind(view)
+        _binding = FragmentSingInBinding.bind(view)
         binding.bSignIn.setOnClickListener {
             val username = binding.etEmail.text.toString()
             val password = binding.etPassword.text.toString()
@@ -55,6 +56,11 @@ class SignInFragment : AbstractRegistrationFragment(R.layout.fragment_sing_in) {
                 }
             }
         }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
 }

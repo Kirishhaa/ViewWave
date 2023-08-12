@@ -15,3 +15,5 @@ class UnsuccessfulSignInException(cause: Throwable?=null): Exception(cause)
 class UnsuccessfulCreateUserException(cause: Throwable?=null): Exception(cause)
 
 class UnsuccessfulDiscoverMovie(cause: Throwable?=null): Exception(cause)
+
+class UnsuccessfulGetDetailMovie(cause: Throwable?=null): Exception(cause)

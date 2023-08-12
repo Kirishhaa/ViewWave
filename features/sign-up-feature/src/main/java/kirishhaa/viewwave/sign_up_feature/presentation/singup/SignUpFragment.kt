@@ -17,12 +17,13 @@ import kirishhaa.viewwave.core.R.string.*
 @AndroidEntryPoint
 class SignUpFragment : AbstractRegistrationFragment(R.layout.fragment_sign_up) {
 
-    private lateinit var binding: FragmentSignUpBinding
+    private var _binding: FragmentSignUpBinding? = null
+    private val binding: FragmentSignUpBinding = _binding!!
     private val viewModel by viewModels<SignUpViewModel>()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding = FragmentSignUpBinding.bind(view)
+        _binding = FragmentSignUpBinding.bind(view)
         binding.bSignUp.setOnClickListener {
             val email = binding.etEmail.text.toString()
             val password = binding.etPassword.text.toString()
@@ -49,6 +50,11 @@ class SignUpFragment : AbstractRegistrationFragment(R.layout.fragment_sign_up) {
             }
 
         }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
 }

@@ -52,5 +52,6 @@ dependencies {
     implementation Libs.GitHub.Glide
 
     implementation project(Modules.Core)
+    implementation project(Modules.Cinema.CustomListItem)
 
 }

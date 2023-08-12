@@ -1,11 +1,27 @@
 package kirishhaa.viewwavemovie_details_screen.presentation
 
 import android.os.Bundle
+import android.view.View
 import androidx.core.os.bundleOf
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
-import kirishhaa.viewwave.core.logD
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
+import dagger.hilt.android.AndroidEntryPoint
+import kirishhaa.viewwave.core.createViewModel
+import kirishhaa.viewwave.core.observe
+import kirishhaa.viewwavemovie_details_screen.R
+import kirishhaa.viewwavemovie_details_screen.databinding.FragmentMovieDetailBinding
+import javax.inject.Inject
 
-class MovieDetailFragment: Fragment() {
+@AndroidEntryPoint
+class MovieDetailFragment: Fragment(R.layout.fragment_movie_detail) {
+
+    private lateinit var binding: FragmentMovieDetailBinding
+
+    @Inject lateinit var factory: MovieDetailViewModel.Factory
+
+    private val viewModel by createViewModel { factory.create(arguments!!.getInt(ARG_MOVIE_ID))  }
 
     companion object{
         private const val ARG_MOVIE_ID = "ARG_MOVIE_ID"
@@ -17,9 +33,26 @@ class MovieDetailFragment: Fragment() {
         }
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        logD("MOVIE ID = ${arguments?.getInt(ARG_MOVIE_ID)}")
-    }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        binding = FragmentMovieDetailBinding.bind(view)
+        observe(viewModel.state) { state ->
+            when{
+                state.isLoadingDetails -> binding.progressBar.isVisible = true
+                state.isLoadedDetails -> {
+                    val currentDetail = state.movieDetail!!
+                    with(binding) {
+                        progressBar.isVisible = false
 
+                        Glide.with(requireContext())
+                            .load(currentDetail.backdropPath)
+                            .into(imageBackdropDetail)
+
+                        textTitleDetail.text = currentDetail.title
+                        textDescriptionDetail.text = currentDetail.overview
+                    }
+                }
+            }
+        }
+    }
 }
