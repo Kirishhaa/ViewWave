@@ -4,8 +4,9 @@ import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import kirishhaa.viewwave.navigation.domain.NavigationProvider
-import kirishhaa.viewwave.navigation.usecases.DefaultNavigationProvider
+import kirishhaa.viewwave.navigation.domain.BaseNavigationProvider
+import kirishhaa.viewwave.navigation.domain.BottomNavigationProvider
+import kirishhaa.viewwave.navigation.usecases.NavigationProvider
 
 
 @Module
@@ -13,6 +14,9 @@ import kirishhaa.viewwave.navigation.usecases.DefaultNavigationProvider
 interface NavigationProviderModule {
 
     @Binds
-    fun provideStartedFragmentClass(provider: DefaultNavigationProvider): NavigationProvider
+    fun bindBaseNavigationProvider(provider: NavigationProvider): BaseNavigationProvider
+
+    @Binds
+    fun bindBottomNavigationProvider(provider: NavigationProvider): BottomNavigationProvider
 
 }

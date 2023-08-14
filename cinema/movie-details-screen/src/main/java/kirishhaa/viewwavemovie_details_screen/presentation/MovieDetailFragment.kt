@@ -6,7 +6,6 @@ import androidx.core.os.bundleOf
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
-import com.bumptech.glide.load.engine.DiskCacheStrategy
 import dagger.hilt.android.AndroidEntryPoint
 import kirishhaa.viewwave.core.createViewModel
 import kirishhaa.viewwave.core.observe
@@ -15,15 +14,19 @@ import kirishhaa.viewwavemovie_details_screen.databinding.FragmentMovieDetailBin
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class MovieDetailFragment: Fragment(R.layout.fragment_movie_detail) {
+class MovieDetailFragment : Fragment(R.layout.fragment_movie_detail) {
 
-    private lateinit var binding: FragmentMovieDetailBinding
+    private var _binding: FragmentMovieDetailBinding? = null
+    private val binding: FragmentMovieDetailBinding get() = _binding!!
 
-    @Inject lateinit var factory: MovieDetailViewModel.Factory
+    @Inject
+    lateinit var factory: MovieDetailViewModel.Factory
 
-    private val viewModel by createViewModel { factory.create(arguments!!.getInt(ARG_MOVIE_ID))  }
+    private val viewModel by createViewModel { factory.create(arguments!!.getInt(ARG_MOVIE_ID)) }
 
-    companion object{
+    companion object {
+        const val TAG = "MovieDetailFragment"
+
         private const val ARG_MOVIE_ID = "ARG_MOVIE_ID"
 
         fun newInstance(id: Int): MovieDetailFragment {
@@ -35,9 +38,9 @@ class MovieDetailFragment: Fragment(R.layout.fragment_movie_detail) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding = FragmentMovieDetailBinding.bind(view)
+        _binding = FragmentMovieDetailBinding.bind(view)
         observe(viewModel.state) { state ->
-            when{
+            when {
                 state.isLoadingDetails -> binding.progressBar.isVisible = true
                 state.isLoadedDetails -> {
                     val currentDetail = state.movieDetail!!
@@ -54,5 +57,10 @@ class MovieDetailFragment: Fragment(R.layout.fragment_movie_detail) {
                 }
             }
         }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }

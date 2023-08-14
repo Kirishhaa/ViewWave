@@ -8,7 +8,6 @@ import kirishhaa.viewwave.core.URLProvider.QUERY.HEADER_TOKEN
 import kirishhaa.viewwave.core.URLProvider.QUERY.TYPE_HEADER
 import kirishhaa.viewwave.core.UnsuccessfulDiscoverMovie
 import kirishhaa.viewwave.core.UnsuccessfulGetDetailMovie
-import kirishhaa.viewwave.core.logD
 import kirishhaa.viewwave.core.logE
 import kirishhaa.viewwave.data.entity.movie.MovieDataEntity
 import kirishhaa.viewwave.data.entity.movie.MovieListDataEntity
@@ -39,7 +38,7 @@ class RetrofitDataSource @Inject constructor(
             @Query("language") language: String? = null,
             @Query("page") page: Int? = 1,
             @Query("sort_by") sortBy: String? = null,
-            @Query("with_genres") genreId: Int?=null
+            @Query("with_genres") genreId: Int? = null,
         ): Response<MovieListDataEntity>
 
         @Headers(
@@ -49,7 +48,7 @@ class RetrofitDataSource @Inject constructor(
         @GET("$GET_MOVIE_BY_DETAIL/{id}")
         suspend fun getMovieDetailById(
             @Path("id") id: Int,
-            @Query("language") language: String? = null
+            @Query("language") language: String? = null,
         ): Response<MovieDataEntity>
 
     }
@@ -60,12 +59,10 @@ class RetrofitDataSource @Inject constructor(
         language: String?,
         page: Int?,
         sortBy: String?,
-        genreId: Int?
+        genreId: Int?,
     ): MovieListDataEntity = withContext(Dispatchers.IO) {
-
         val response = retrofit.create(Api::class.java)
             .discoverMovie(includeAdult, includeVideo, language, page, sortBy, genreId)
-
         val isSuccessful = response.isSuccessful
         if (!isSuccessful) {
             logE("unsuccessful discover movie")
@@ -85,13 +82,13 @@ class RetrofitDataSource @Inject constructor(
             .getMovieDetailById(id)
 
         val isSuccessful = response.isSuccessful
-        if(!isSuccessful) {
+        if (!isSuccessful) {
             logE("unsuccessful detail movie")
             throw UnsuccessfulGetDetailMovie()
         } else {
             try {
                 return@withContext response.body()!!
-            }catch (e: Exception) {
+            } catch (e: Exception) {
                 logE("null body getMovieDetailById")
                 throw UnsuccessfulGetDetailMovie(e)
             }

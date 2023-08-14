@@ -1,9 +1,9 @@
 package kirishhaa.viewwave.sign_up_feature.presentation.singup
 
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kirishhaa.viewwave.core.StateViewModel
 import kirishhaa.viewwave.core.Finish
-import kirishhaa.viewwave.core.PendingFinish
+import kirishhaa.viewwave.core.StateViewModel
+import kirishhaa.viewwave.core.SuccessFinish
 import kirishhaa.viewwave.sign_up_feature.data.SignUpInfo
 import kirishhaa.viewwave.sign_up_feature.domain.CreateAccountUseCase
 import kirishhaa.viewwave.sign_up_feature.presentation.SignUpRouter
@@ -16,7 +16,7 @@ class SignUpViewModel @Inject constructor(
     private val signUpRouter: SignUpRouter,
 ) : StateViewModel<Finish<Unit>>() {
 
-    override val state: MutableStateFlow<Finish<Unit>> = MutableStateFlow(PendingFinish())
+    override val state: MutableStateFlow<Finish<Unit>> = MutableStateFlow(SuccessFinish(Unit))
 
     fun onCreateAccountClicked(email: String, password: String, repeatedPassword: String) {
         handleFinishFlow(state) {

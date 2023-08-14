@@ -14,8 +14,8 @@ import kotlinx.coroutines.flow.combine
 class AllMovieViewModel @AssistedInject constructor(
     @Assisted private val genreId: Int,
     private val loadMoviesUseCase: LoadMoviesUseCase,
-    private val movieDetailClickedUseCase: MovieDetailClickedUseCase
-): StateViewModel<AllMovieViewModel.State>(), AllMovieAdapter.Listener {
+    private val movieDetailClickedUseCase: MovieDetailClickedUseCase,
+) : StateViewModel<AllMovieViewModel.State>(), AllMovieAdapter.Listener {
 
     private var currentState = State()
 
@@ -27,21 +27,21 @@ class AllMovieViewModel @AssistedInject constructor(
 
     override val state = combine(loadAllMoviesFlow) {
         val movieList = it[0]
-        if(movieList is SuccessFinish){
+        if (movieList is SuccessFinish) {
             currentState = currentState.copy(
                 isErrorLoadedAllMovie = false,
                 isLoadingAllMovies = false,
                 isLoadedAllMovie = true
             )
         }
-        if(movieList is ErrorFinish){
+        if (movieList is ErrorFinish) {
             currentState = currentState.copy(
                 isErrorLoadedAllMovie = true,
                 isLoadingAllMovies = false,
                 isLoadedAllMovie = false
             )
         }
-        if(movieList is PendingFinish){
+        if (movieList is PendingFinish) {
             currentState = currentState.copy(
                 isErrorLoadedAllMovie = false,
                 isLoadingAllMovies = true,
@@ -60,11 +60,11 @@ class AllMovieViewModel @AssistedInject constructor(
         val isLoadedAllMovie: Boolean = false,
         val isErrorLoadedAllMovie: Boolean = false,
         val movieListItem: List<MovieListItem> = emptyList(),
-        val page: Int = 1
+        val page: Int = 1,
     )
 
     @AssistedFactory
-    interface Factory{
+    interface Factory {
         fun create(genre: Int): AllMovieViewModel
     }
 
@@ -79,8 +79,8 @@ class AllMovieViewModel @AssistedInject constructor(
             return@handleFinishFlow loadMoviesUseCase.loadMovies(genreId, currentState.page)
         }.onSuccess { list ->
             currentState = currentState.copy(
-                movieListItem = (currentState.movieListItem+list).distinct(),
-                page = currentState.page+1
+                movieListItem = (currentState.movieListItem + list).distinct(),
+                page = currentState.page + 1
             )
         }
     }

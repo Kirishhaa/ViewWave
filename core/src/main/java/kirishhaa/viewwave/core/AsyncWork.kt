@@ -7,18 +7,41 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
 
+/**
+ * Custom implementation subscribe for flow with Finish value
+ */
 interface AsyncWork<T> {
 
+    /**
+     * Finish flow, that mapping job state.
+     */
     val result: Flow<Finish<T>>
 
+    /**
+     * subscribe onSuccess. Argument is inner flow's value
+     * Invokes before the result flow change Finish state to SuccessFinish!!
+     */
     fun onSuccess(block: (T) -> Unit): AsyncWork<T>
 
+    /**
+     * subscribe onError.
+     * Invokes before the result flow change Finish state to ErrorFinish!!
+     */
     fun onError(block: (Throwable) -> Unit): AsyncWork<T>
 
+    /**
+     * start a job in selected CoroutineScope to invoke suspend block
+     */
     fun enqueue(scope: CoroutineScope, block: suspend () -> T): AsyncWork<T>
 
+    /**
+     * opportunity to cancel previous job (if it is working) and start a new job.
+     */
     fun setUpdatable(updatable: Boolean): AsyncWork<T>
 
+    /**
+     * cancel a job
+     */
     fun cancel()
 
 }
@@ -34,7 +57,7 @@ private class SimpleAsyncWork<T> : AsyncWork<T> {
     private var successCallback: ((T) -> Unit)? = null
     private var errorCallback: ((Throwable) -> Unit)? = null
 
-    override fun onSuccess(block:(T) -> Unit): AsyncWork<T> {
+    override fun onSuccess(block: (T) -> Unit): AsyncWork<T> {
         this.successCallback = block
         return this
     }
@@ -55,13 +78,13 @@ private class SimpleAsyncWork<T> : AsyncWork<T> {
     }
 
     override fun enqueue(scope: CoroutineScope, block: suspend () -> T): AsyncWork<T> {
-            val job = this.job
-            if (updatable || job == null) {
-                job?.cancel()
-                runAsync(scope, block)
-            }
-            return this
+        val job = this.job
+        if (updatable || job == null) {
+            job?.cancel()
+            runAsync(scope, block)
         }
+        return this
+    }
 
     private fun runAsync(scope: CoroutineScope, block: suspend () -> T) {
         this.result.value = PendingFinish()
@@ -77,10 +100,10 @@ private class SimpleAsyncWork<T> : AsyncWork<T> {
                 notifyUpdates(asyncResult)
             }
         }
-        job?.invokeOnCompletion { job=null }
+        job?.invokeOnCompletion { job = null }
     }
 
-    private fun notifyUpdates(asyncResult: Finish<T>)  {
+    private fun notifyUpdates(asyncResult: Finish<T>) {
         val successCallback = this.successCallback
         val errorCallback = this.errorCallback
 
@@ -97,6 +120,9 @@ private class SimpleAsyncWork<T> : AsyncWork<T> {
     }
 }
 
+/**
+ * Singleton that provides AsyncWork from base pool (initial capacity = 64) of AsyncWorkers.
+ */
 class AsyncWorkManager private constructor() {
 
     companion object {

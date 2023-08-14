@@ -1,9 +1,9 @@
 package kirishhaa.viewwave.data.movie.datasource
 
-import kirishhaa.viewwave.data.entity.movie.MovieListDataEntity
 import kirishhaa.viewwave.core.UnsuccessfulDiscoverMovie
-import kirishhaa.viewwave.data.entity.movie.MovieDataEntity
 import kirishhaa.viewwave.core.UnsuccessfulGetDetailMovie
+import kirishhaa.viewwave.data.entity.movie.MovieDataEntity
+import kirishhaa.viewwave.data.entity.movie.MovieListDataEntity
 
 interface MovieDataSource {
 
@@ -16,7 +16,7 @@ interface MovieDataSource {
         language: String?,
         page: Int?,
         sortBy: String?,
-        genreId: Int?
+        genreId: Int?,
     ): MovieListDataEntity
 
     /**

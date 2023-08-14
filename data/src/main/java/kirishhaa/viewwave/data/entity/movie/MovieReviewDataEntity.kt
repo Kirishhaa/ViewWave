@@ -12,5 +12,5 @@ class MovieReviewDataEntity(
     @SerializedName("content")
     private val content: String,
     @SerializedName("created_at")
-    private val createdAt: String
+    private val createdAt: String,
 )

@@ -8,7 +8,6 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
 import kirishhaa.viewwave.core.createViewModel
-import kirishhaa.viewwave.core.logD
 import kirishhaa.viewwave.core.observe
 import kirishhaa.viewwave.main_screen.R
 import kirishhaa.viewwave.main_screen.databinding.FragmentAllMovieBinding
@@ -17,6 +16,18 @@ import javax.inject.Inject
 
 @AndroidEntryPoint
 class AllMovieFragment : Fragment(R.layout.fragment_all_movie) {
+
+    companion object {
+        fun newInstance(genreId: Int): AllMovieFragment {
+            val fr = AllMovieFragment()
+            fr.arguments = bundleOf(ARG_GENRE to genreId)
+            return fr
+        }
+
+        private const val ARG_GENRE = "ARG_GENRE"
+
+        const val TAG = "AllMovieFragment"
+    }
 
     @Inject
     lateinit var factory: AllMovieViewModel.Factory
@@ -49,16 +60,6 @@ class AllMovieFragment : Fragment(R.layout.fragment_all_movie) {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
-    }
-
-    companion object {
-        fun newInstance(genreId: Int): AllMovieFragment {
-            val fr = AllMovieFragment()
-            fr.arguments = bundleOf(ARG_GENRE to genreId)
-            return fr
-        }
-
-        private const val ARG_GENRE = "ARG_GENRE"
     }
 
 }

@@ -3,7 +3,6 @@ package kirishhaa.viewwave.sign_up_feature.presentation.singup
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
-import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import com.example.sign_up_feature.R
 import com.example.sign_up_feature.databinding.FragmentSignUpBinding
@@ -17,8 +16,12 @@ import kirishhaa.viewwave.core.R.string.*
 @AndroidEntryPoint
 class SignUpFragment : AbstractRegistrationFragment(R.layout.fragment_sign_up) {
 
+    companion object {
+        const val TAG = "SignUpFragment"
+    }
+
     private var _binding: FragmentSignUpBinding? = null
-    private val binding: FragmentSignUpBinding = _binding!!
+    private val binding: FragmentSignUpBinding get() = _binding!!
     private val viewModel by viewModels<SignUpViewModel>()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

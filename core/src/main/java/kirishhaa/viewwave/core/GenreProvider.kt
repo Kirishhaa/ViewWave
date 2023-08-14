@@ -23,7 +23,7 @@ object GenreProvider {
     const val WESTERN_ID = 37
 
     fun provideGenreById(id: Int): String {
-        return when(id) {
+        return when (id) {
             ACTION_ID -> "Action"
             ADVENTURE_ID -> "Adventure"
             ANIMATION_ID -> "Animation"

@@ -7,11 +7,10 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
-import javax.inject.Singleton
 
 class FirebaseDataSource @Inject constructor(
-    private val auth: FirebaseAuth
-): AccountDataSource {
+    private val auth: FirebaseAuth,
+) : AccountDataSource {
 
     override suspend fun signInWithEmailAndPassword(email: String, password: String): Boolean {
         return withContext(Dispatchers.IO) {
@@ -24,7 +23,7 @@ class FirebaseDataSource @Inject constructor(
 
     override suspend fun isSignedIn(): Boolean {
         return withContext(Dispatchers.IO) {
-            return@withContext auth.currentUser!=null
+            return@withContext auth.currentUser != null
         }
     }
 

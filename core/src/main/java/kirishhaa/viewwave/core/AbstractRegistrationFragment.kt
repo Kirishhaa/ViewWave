@@ -10,17 +10,19 @@ import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
 
-abstract class AbstractRegistrationFragment(@LayoutRes layoutRes: Int): Fragment(layoutRes) {
+abstract class AbstractRegistrationFragment(@LayoutRes layoutRes: Int) : Fragment(layoutRes) {
 
     /**
      * Make result flow state observer, that disabled all views if result is pending and enabled in other case.
      * doOnError is additional logic executes on error result
      */
-    protected fun<T> observeScreenState(root: ViewGroup, flowScreenState: Flow<Finish<T>>,
-                                     doOnError: (ErrorFinish<T>) -> Unit) {
+    protected fun <T> observeScreenState(
+        root: ViewGroup, flowScreenState: Flow<Finish<T>>,
+        doOnError: (ErrorFinish<T>) -> Unit,
+    ) {
         viewLifecycleOwner.lifecycleScope.launch {
             flowScreenState.collect { screenState ->
-                when(screenState) {
+                when (screenState) {
                     is ErrorFinish -> {
                         enableViews(root, true)
                         doOnError(screenState)
@@ -40,7 +42,7 @@ abstract class AbstractRegistrationFragment(@LayoutRes layoutRes: Int): Fragment
      */
     protected fun enableViews(root: ViewGroup, isEnable: Boolean) {
         root.forEach {
-            if(it is ProgressBar) {
+            if (it is ProgressBar) {
                 it.isVisible = !isEnable
             } else {
                 it.isEnabled = isEnable

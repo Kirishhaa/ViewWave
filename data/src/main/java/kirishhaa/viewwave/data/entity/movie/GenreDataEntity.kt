@@ -6,5 +6,5 @@ class GenreDataEntity(
     @SerializedName("name")
     val name: String,
     @SerializedName("id")
-    val id: Int
+    val id: Int,
 )

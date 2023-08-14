@@ -10,5 +10,5 @@ class MovieCreditsDataEntity(
     @SerializedName("profile_path")
     private val profilePath: String,
     @SerializedName("character")
-    private val character: String
+    private val character: String,
 )

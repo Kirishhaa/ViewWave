@@ -2,22 +2,20 @@ package kirishhaa.viewwave.data.account.repository
 
 import kirishhaa.viewwave.core.*
 import kirishhaa.viewwave.data.account.datasource.AccountDataSource
-import kotlinx.coroutines.delay
 import javax.inject.Inject
-import javax.inject.Singleton
 
 class DefaultAccountRepository @Inject constructor(
-    private val accountDataSource: AccountDataSource
-): AccountRepository {
+    private val accountDataSource: AccountDataSource,
+) : AccountRepository {
 
     override suspend fun signInWithEmailAndPassword(email: String, password: String) {
         try {
             val isSuccessful = accountDataSource.signInWithEmailAndPassword(email, password)
-            if(!isSuccessful) {
+            if (!isSuccessful) {
                 logE("signInWithEmailAndPassword unsuccessful exception")
                 throw UnsuccessfulSignInException()
             }
-        }catch (e: AuthException) {
+        } catch (e: AuthException) {
             logE("signInWithEmailAndPassword auth exception")
             throw e
         }
@@ -30,7 +28,7 @@ class DefaultAccountRepository @Inject constructor(
     override suspend fun createUserWithEmailAndPassword(email: String, password: String) {
         try {
             val isSuccessful = accountDataSource.createUserWithEmailAndPassword(email, password)
-            if(!isSuccessful) {
+            if (!isSuccessful) {
                 logE("createUserWithEmailAndPassword unsuccessful exception")
                 throw UnsuccessfulCreateUserException()
             }

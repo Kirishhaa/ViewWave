@@ -14,7 +14,11 @@ class ViewModelFactory<VM : ViewModel>(
     }
 }
 
-inline fun <reified VM : ViewModel> Fragment.createViewModel
-            (noinline createdFunctionViewModel: () -> VM): Lazy<VM> {
+/**
+ * Extension to create view model by means of create function
+ */
+inline fun <reified VM : ViewModel> Fragment.createViewModel(
+    noinline createdFunctionViewModel: () -> VM,
+): Lazy<VM> {
     return viewModels { ViewModelFactory(createdFunctionViewModel) }
 }

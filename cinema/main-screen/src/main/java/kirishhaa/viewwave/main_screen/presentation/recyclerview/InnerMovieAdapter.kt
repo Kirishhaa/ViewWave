@@ -7,7 +7,6 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
 import com.bumptech.glide.Glide
-import kirishhaa.viewwave.core.recyclerview.BaseDiffUtil
 import kirishhaa.viewwave.core.recyclerview.SingleListAdapter
 import kirishhaa.viewwave.core.recyclerview.SingleListViewHolder
 import kirishhaa.viewwave.main_screen.R

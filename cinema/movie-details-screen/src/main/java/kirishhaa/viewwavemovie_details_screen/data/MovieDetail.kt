@@ -12,5 +12,5 @@ class MovieDetail(
     val title: String,
     val voteAverage: String,
     val voteCount: String,
-    val runtime: String
+    val runtime: String,
 )

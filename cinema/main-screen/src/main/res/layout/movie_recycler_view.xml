@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
@@ -10,29 +9,29 @@
         android:id="@+id/movie_recycler_view_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:text="Popular"
         android:textSize="28sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Popular" />
 
     <LinearLayout
         android:id="@+id/movie_recycler_view_more_layout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:orientation="horizontal">
+        app:layout_constraintTop_toTopOf="parent">
 
         <TextView
             android:layout_width="70dp"
             android:layout_height="40dp"
             android:text="more"
-            android:textSize="28sp"/>
+            android:textSize="28sp" />
 
         <ImageView
             android:layout_width="50dp"
             android:layout_height="40dp"
-            android:src="@drawable/ic_more"/>
+            android:src="@drawable/ic_more" />
 
     </LinearLayout>
 
@@ -40,12 +39,12 @@
         android:id="@+id/movie_recycler_view_recyclerView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        tools:listitem="@layout/movie_recycle_item"
         android:orientation="horizontal"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/movie_recycler_view_title"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/movie_recycler_view_title"
+        tools:listitem="@layout/movie_recycle_item" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

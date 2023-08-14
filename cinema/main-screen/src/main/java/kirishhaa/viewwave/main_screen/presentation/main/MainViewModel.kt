@@ -2,13 +2,16 @@ package kirishhaa.viewwave.main_screen.presentation.main
 
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kirishhaa.viewwave.core.*
+import kirishhaa.viewwave.core.Finish
+import kirishhaa.viewwave.core.GenreProvider
 import kirishhaa.viewwave.core.GenreProvider.ACTION_ID
 import kirishhaa.viewwave.core.GenreProvider.ADVENTURE_ID
 import kirishhaa.viewwave.core.GenreProvider.DRAMA_ID
 import kirishhaa.viewwave.core.GenreProvider.FANTASY_ID
 import kirishhaa.viewwave.core.GenreProvider.HORROR_ID
 import kirishhaa.viewwave.core.GenreProvider.THRILLER_ID
+import kirishhaa.viewwave.core.PendingFinish
+import kirishhaa.viewwave.core.StateViewModel
 import kirishhaa.viewwave.main_screen.data.MovieListItem
 import kirishhaa.viewwave.main_screen.domain.LoadMoviesUseCase
 import kirishhaa.viewwave.main_screen.domain.MovieDetailClickedUseCase
@@ -23,7 +26,7 @@ import javax.inject.Inject
 class MainViewModel @Inject constructor(
     private val movieDetailClickedUseCase: MovieDetailClickedUseCase,
     private val loadMoviesUseCase: LoadMoviesUseCase,
-    private val onMorePressedUseCase: OnMorePressedUseCase
+    private val onMorePressedUseCase: OnMorePressedUseCase,
 ) : StateViewModel<MainViewModel.State>(), OuterMovieAdapter.OuterMovieAdapterListener {
 
     private val actionMoviesFlow: MutableStateFlow<List<MovieListItem>> =

@@ -1,6 +1,7 @@
-package kirishhaa.viewwave.navigation.presentation
+package kirishhaa.viewwave.navigation.domain
 
 import androidx.fragment.app.FragmentActivity
+import javax.inject.Inject
 
 /**
  * Class-observer that can safety invoke navigation functions on the Activity
@@ -22,7 +23,7 @@ internal object ActivityLifecycleExecutor {
 
     fun execute(task: (FragmentActivity) -> Unit) {
         val activity = activity
-        if(activity==null) {
+        if (activity == null) {
             navigationTasks.add(task)
         } else {
             task(activity)
@@ -32,7 +33,7 @@ internal object ActivityLifecycleExecutor {
     private fun notifyActivity() {
         navigationTasks.forEachIndexed { index, task ->
             val activity = activity
-            if(activity==null) {
+            if (activity == null) {
                 clearBeforeIndexTasks(index)
                 return
             }

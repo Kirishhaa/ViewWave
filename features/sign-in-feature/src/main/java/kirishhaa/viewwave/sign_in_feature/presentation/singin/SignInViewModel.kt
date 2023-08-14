@@ -1,9 +1,9 @@
 package kirishhaa.viewwave.sign_in_feature.presentation.singin
 
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kirishhaa.viewwave.core.StateViewModel
 import kirishhaa.viewwave.core.Finish
 import kirishhaa.viewwave.core.PendingFinish
+import kirishhaa.viewwave.core.StateViewModel
 import kirishhaa.viewwave.sign_in_feature.data.SignInInfo
 import kirishhaa.viewwave.sign_in_feature.domain.usecases.IsSignedInUseCase
 import kirishhaa.viewwave.sign_in_feature.domain.usecases.SignInUseCase

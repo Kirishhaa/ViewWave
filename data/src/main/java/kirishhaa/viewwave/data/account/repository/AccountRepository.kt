@@ -1,8 +1,8 @@
 package kirishhaa.viewwave.data.account.repository
 
+import kirishhaa.viewwave.core.AuthException
 import kirishhaa.viewwave.core.CreateAccountException
 import kirishhaa.viewwave.core.UnsuccessfulCreateUserException
-import kirishhaa.viewwave.core.AuthException
 import kirishhaa.viewwave.core.UnsuccessfulSignInException
 
 interface AccountRepository {

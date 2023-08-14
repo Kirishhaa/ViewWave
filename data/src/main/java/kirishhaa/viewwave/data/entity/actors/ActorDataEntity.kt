@@ -14,5 +14,5 @@ class ActorDataEntity(
     @SerializedName("place_of_bith")
     private val placeOfBirth: String,
     @SerializedName("profile_path")
-    private val profilePath: String
+    private val profilePath: String,
 )

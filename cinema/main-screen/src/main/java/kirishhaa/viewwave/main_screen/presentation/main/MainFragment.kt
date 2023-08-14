@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
+import kirishhaa.viewwave.core.logD
 import kirishhaa.viewwave.core.observe
 import kirishhaa.viewwave.main_screen.R
 import kirishhaa.viewwave.main_screen.databinding.FragmentMainBinding
@@ -15,6 +16,10 @@ import kirishhaa.viewwave.main_screen.presentation.recyclerview.OuterMovieAdapte
 @AndroidEntryPoint
 class MainFragment : Fragment(R.layout.fragment_main) {
 
+    companion object {
+        const val TAG = "MainFragment"
+    }
+
     private var _binding: FragmentMainBinding? = null
     private val binding: FragmentMainBinding get() = _binding!!
 
@@ -22,6 +27,11 @@ class MainFragment : Fragment(R.layout.fragment_main) {
 
     private var _adapter: OuterMovieAdapter? = null
     private val adapter get() = _adapter!!
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        logD("tag = $tag")
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

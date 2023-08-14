@@ -6,5 +6,5 @@ class MovieListDataEntity(
     @SerializedName("page")
     val currentPage: Int,
     @SerializedName("results")
-    val movieList: List<MovieDataEntity>
+    val movieList: List<MovieDataEntity>,
 )

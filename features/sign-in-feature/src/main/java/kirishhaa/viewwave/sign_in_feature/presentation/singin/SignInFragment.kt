@@ -15,8 +15,12 @@ import kirishhaa.viewwave.sign_in_feature.databinding.FragmentSingInBinding
 @AndroidEntryPoint
 class SignInFragment : AbstractRegistrationFragment(R.layout.fragment_sing_in) {
 
+    companion object {
+        const val TAG = "SignInFragment"
+    }
+
     private var _binding: FragmentSingInBinding? = null
-    private val binding: FragmentSingInBinding = _binding!!
+    private val binding: FragmentSingInBinding get() = _binding!!
 
     private val viewModel by viewModels<SignInViewModel>()
 

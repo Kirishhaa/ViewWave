@@ -2,15 +2,20 @@ package kirishhaa.viewwave.cinema.mainscreen.usecases
 
 import kirishhaa.viewwave.main_screen.domain.OnMorePressedUseCase
 import kirishhaa.viewwave.main_screen.presentation.allmovie.AllMovieFragment
-import kirishhaa.viewwave.navigation.domain.GlobalNavigator
+import kirishhaa.viewwave.main_screen.presentation.main.MainFragment
+import kirishhaa.viewwave.navigation.domain.BottomNavigator
 import javax.inject.Inject
 
 class OnMorePressedAdapter @Inject constructor(
-    private val globalNavigator: GlobalNavigator,
+    private val baseNavigator: BottomNavigator,
 ) : OnMorePressedUseCase {
 
     override suspend fun onMorePressed(genreId: Int) {
-        globalNavigator.navigateToFragment(AllMovieFragment.newInstance(genreId), true)
+        baseNavigator.navigateToFragment(
+            parentTag = MainFragment.TAG,
+            fragmentTag = AllMovieFragment.TAG,
+            toFragment = AllMovieFragment.newInstance(genreId)
+        )
     }
 
 
